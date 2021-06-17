@@ -54,11 +54,9 @@ const deleteUser = async (req, res) => {
 
 const Buscar = async (req, res) => {
     
- if (req.name) {
-    const {data} = await axios.get(
-      `http://api.openweathermap.org/data/2.5/weather?q=${req.name}&units=metric&appid=b14d34b29decb3a8a377a3444a4093b6`
-    );
-    const cidade = data.name;
+ if (req.body['cidade']) {
+   //console.log(req.body['cidade'])
+    const cidade = req.body['cidade'];
     //console.log(cidade);
     const consulta = await pool.query(
       "SELECT * FROM cidades WHERE cidade = $1",
